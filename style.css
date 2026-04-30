@@ -197,7 +197,8 @@ body {
 }
 
 .card a {
-  align-self: flex-start;
+  align-self: center;
+  margin-right: 0;
 }
 
 .highlight {
