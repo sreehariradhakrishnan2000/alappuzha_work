@@ -1,3 +1,7 @@
+* {
+  box-sizing: border-box;
+}
+
 body {
   margin: 0;
   font-family: 'Segoe UI', sans-serif;
@@ -9,15 +13,30 @@ body {
 .header {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   padding: 20px;
   position: fixed;
   width: 100%;
   background: rgba(0,0,0,0.5);
   backdrop-filter: blur(10px);
+  z-index: 100;
+}
+
+.header-brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.header-logo {
+  width: 42px;
+  height: 42px;
+  object-fit: contain;
 }
 
 .logo {
   font-size: 20px;
+  margin: 0;
 }
 
 .btn {
@@ -31,13 +50,21 @@ body {
 
 /* HERO */
 .hero {
-  height: 100vh;
+  min-height: calc(100vh - 88px);
   background: url('assets/houseboats.avif') center/cover;
   position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
   text-align: center;
+  padding: 0 20px;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 1;
+  max-width: 700px;
+  width: 100%;
 }
 
 .overlay {
@@ -56,39 +83,101 @@ body {
 .trust {
   display: flex;
   justify-content: space-around;
-  padding: 40px;
+  align-items: stretch;
+  gap: 20px;
+  padding: 40px 20px;
+  flex-wrap: wrap;
 }
 
 .trust-box {
   background: rgba(255,255,255,0.1);
   padding: 20px;
   border-radius: 10px;
+  flex: 1;
+  min-width: 220px;
 }
 
 /* PACKAGES */
 .packages {
   text-align: center;
-  padding: 50px;
+  padding: 70px 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.packages h2 {
+  font-size: 2.8rem;
+  margin-bottom: 40px;
+  color: #FFD166;
 }
 
 .cards {
-  display: flex;
-  gap: 20px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 30px;
   justify-content: center;
+  align-items: stretch;
 }
 
 .card {
-  background: rgba(255,255,255,0.1);
-  padding: 20px;
-  border-radius: 15px;
-  width: 250px;
+  background: rgba(255,255,255,0.08);
+  padding: 30px;
+  border-radius: 20px;
+  min-height: 360px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   backdrop-filter: blur(10px);
-  border: 1px solid rgba(255,255,255,0.2);
-  transition: transform 0.3s ease;
+  border: 1px solid rgba(255,255,255,0.18);
+  transition: transform 0.3s ease, border-color 0.3s ease, background 0.3s ease;
+  width: 100%;
 }
 
 .card:hover {
-  transform: translateY(-5px);
+  transform: translateY(-8px);
+  background: rgba(255,255,255,0.14);
+  border-color: rgba(255,255,255,0.35);
+}
+
+.card h3 {
+  font-size: 1.8rem;
+  margin-bottom: 10px;
+  color: #00C9A7;
+}
+
+.card p {
+  font-size: 1.05rem;
+  font-weight: 600;
+  margin-bottom: 20px;
+  color: rgba(255,255,255,0.95);
+}
+
+.card ul {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 30px;
+}
+
+.card li {
+  position: relative;
+  padding-left: 24px;
+  margin-bottom: 14px;
+  color: rgba(255,255,255,0.9);
+  line-height: 1.6;
+}
+
+.card li::before {
+  content: '•';
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: #FFD166;
+  font-size: 1.2rem;
+  line-height: 1;
+}
+
+.card a {
+  align-self: flex-start;
 }
 
 .highlight {
@@ -332,6 +421,7 @@ button:hover {
   margin-top: 40px;
 }
 
+.highlight,
 .info-highlight {
   background: rgba(0, 201, 167, 0.1);
   border-left: 3px solid #00C9A7;
@@ -340,13 +430,7 @@ button:hover {
   text-align: center;
 }
 
-.info-highlight h4 {
-  color: #FFD166;
-  margin-bottom: 10px;
-  font-size: 1.2rem;
-  margin-top: 0;
-}
-
+.highlight h4,
 .info-highlight p {
   color: rgba(255, 255, 255, 0.8);
   font-size: 0.95rem;
@@ -383,10 +467,77 @@ button:hover {
   border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
+@media (max-width: 768px) {
+  .gallery-grid img {
+    height: auto;
+  }
+}
+
 .gallery-grid img:hover {
   transform: scale(1.05);
   box-shadow: 0 8px 20px rgba(0, 201, 167, 0.3);
   border-color: #00C9A7;
+}
+
+/* BRAND SECTION */
+.contact-brand-section {
+  padding: 50px 20px;
+}
+
+.brand-card {
+  max-width: 1000px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: minmax(120px, 180px) 1fr;
+  gap: 30px;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 20px;
+  padding: 30px;
+  backdrop-filter: blur(15px);
+}
+
+.brand-logo {
+  width: 100%;
+  max-width: 180px;
+  object-fit: contain;
+}
+
+.brand-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.brand-info h2 {
+  color: #FFD166;
+  margin: 0 0 15px;
+}
+
+.brand-info p {
+  color: rgba(255, 255, 255, 0.9);
+  line-height: 1.8;
+}
+
+.brand-contact-details {
+  margin-top: 20px;
+  text-align: left;
+}
+
+.brand-contact-details p {
+  margin: 10px 0;
+  color: rgba(255, 255, 255, 0.9);
+  line-height: 1.6;
+}
+
+.brand-contact-details a {
+  color: #00C9A7;
+  text-decoration: none;
+}
+
+.brand-contact-details a:hover {
+  text-decoration: underline;
 }
 
 /* FAQ SECTION */
@@ -443,7 +594,18 @@ button:hover {
 @media (max-width: 768px) {
   .header {
     flex-direction: column;
+    align-items: center;
     text-align: center;
+    gap: 15px;
+  }
+
+  .header-brand {
+    justify-content: center;
+  }
+
+  .btn {
+    margin-right: 0;
+    width: auto;
   }
 
   .trust {
@@ -452,22 +614,32 @@ button:hover {
   }
 
   .cards {
-    flex-direction: column;
-    align-items: center;
+    grid-template-columns: 1fr;
   }
 
   .card {
-    width: 100%;
-    max-width: 300px;
+    min-height: auto;
+    max-width: 100%;
+    padding: 24px;
+  }
+
+  .hero {
+    min-height: calc(100vh - 120px);
+    padding: 20px;
   }
 
   .hero h1 {
     font-size: 2rem;
   }
 
-  input, button {
+  .hero p {
+    font-size: 1rem;
+  }
+
+  input,
+  button {
     width: 100%;
-    max-width: 300px;
+    max-width: 100%;
   }
 
   .experiences-grid,
@@ -476,11 +648,37 @@ button:hover {
     grid-template-columns: 1fr;
   }
 
+  .brand-card {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  .brand-info {
+    align-items: center;
+  }
+
+  .brand-contact-details {
+    text-align: center;
+  }
+
   .special-experiences,
   .alappuzha-info,
   .gallery-section,
-  .faq-section {
-    padding: 40px 20px;
+  .faq-section,
+  .contact,
+  .contact-brand-section,
+  .packages {
+    padding: 40px 16px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .cards {
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  }
+
+  .brand-card {
+    grid-template-columns: 1fr;
   }
 }
 
